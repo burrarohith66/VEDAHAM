@@ -1,0 +1,1 @@
+"""Future analytics API boundary."""

@@ -1,0 +1,1 @@
+"""Future assessments API boundary."""
