@@ -1,6 +1,9 @@
 import { cookies } from "next/headers"
+import Link from "next/link"
 import { redirect } from "next/navigation"
+import { Settings } from "lucide-react"
 import { LogoutButton } from "@/components/dashboard/logout-button"
+import { Button } from "@/components/ui/button"
 import type { AuthUser } from "@/lib/auth/auth-types"
 
 async function getAuthenticatedUser(): Promise<AuthUser | null> {
@@ -32,7 +35,15 @@ export default async function DashboardPage() {
             <h1 className="mt-3 text-3xl font-semibold tracking-tight">Welcome, {user.full_name}</h1>
             <p className="mt-2 max-w-xl text-muted-foreground">Your account is ready. Your personalized learning experience will be set up in onboarding.</p>
           </div>
-          <LogoutButton />
+          <div className="flex items-center gap-3">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/settings">
+                <Settings className="size-4 mr-1.5" />
+                Settings
+              </Link>
+            </Button>
+            <LogoutButton />
+          </div>
         </div>
       </section>
     </main>

@@ -7,6 +7,8 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 
 from app.api.auth import limiter, router as auth_router
+from app.api.onboarding import router as onboarding_router
+from app.api.profile import router as profile_router
 from app.core.config import get_settings
 
 
@@ -24,6 +26,8 @@ def create_app() -> FastAPI:
         allow_headers=["Content-Type"],
     )
     app.include_router(auth_router)
+    app.include_router(onboarding_router)
+    app.include_router(profile_router)
     return app
 
 

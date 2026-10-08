@@ -6,6 +6,8 @@ from functools import lru_cache
 from sqlalchemy import Engine, create_engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
+from sqlalchemy.pool import StaticPool
+
 from app.core.config import get_settings
 
 
@@ -15,7 +17,14 @@ class Base(DeclarativeBase):
 
 @lru_cache
 def get_engine() -> Engine:
-    return create_engine(get_settings().database_url, pool_pre_ping=True)
+    database_url = get_settings().database_url
+    if database_url.startswith("sqlite"):
+        return create_engine(
+            database_url,
+            connect_args={"check_same_thread": False},
+            poolclass=StaticPool,
+        )
+    return create_engine(database_url, pool_pre_ping=True)
 
 
 @lru_cache

@@ -40,3 +40,4 @@ Future AI capabilities are separated under `backend/app/ai` for tutoring, retrie
 4. Use `.env.example` as the public configuration contract; never commit real credentials.
 
 See `docs/` for the current architectural notes, API contract, and startup instructions.
+For copy-paste Windows PowerShell commands to configure, run, and inspect the project, see [`commands.md`](./commands.md).

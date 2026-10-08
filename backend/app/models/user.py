@@ -3,11 +3,16 @@
 from datetime import datetime
 from uuid import UUID, uuid4
 
+from typing import TYPE_CHECKING
+
 from sqlalchemy import Boolean, DateTime, String, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.types import Uuid
 
 from app.core.database import Base
+
+if TYPE_CHECKING:
+    from app.models.student_profile import StudentProfile
 
 
 class User(Base):
@@ -25,3 +30,8 @@ class User(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
     )
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    # 1:1 relationship with StudentProfile
+    student_profile: Mapped["StudentProfile | None"] = relationship(
+        "StudentProfile", back_populates="user", uselist=False
+    )
