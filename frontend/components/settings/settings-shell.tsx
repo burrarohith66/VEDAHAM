@@ -45,7 +45,7 @@ export function SettingsShell({ userName, email }: SettingsShellProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background px-4 py-6 sm:px-6 smpy-8 lg:px-8">
+    <main className="min-h-screen bg-background px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
       {/* Background ambient glow matching dashboard */}
       <div
         className="pointer-events-none fixed inset-0 grid-bg opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
@@ -56,7 +56,7 @@ export function SettingsShell({ userName, email }: SettingsShellProps) {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-4l space-y-6 sm:space-y-8">
+      <div className="relative mx-auto max-w-4xl space-y-6 sm:space-y-8">
         {/* Top Header & Dashboard Navigation Bar */}
         <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-white/[0.08] pb-5 sm:pb-6">
           <div className="flex items-center gap-4">
@@ -123,7 +123,7 @@ export function SettingsShell({ userName, email }: SettingsShellProps) {
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
               {activeSection === "profile" && (
-                <ProfileSettings userName={userName} email={email} />
+                <ProfileSettings initialUserName={userName} initialEmail={email} />
               )}
               {activeSection === "academic" && <AcademicSettings />}
               {activeSection === "preferences" && <PreferencesSettings />}

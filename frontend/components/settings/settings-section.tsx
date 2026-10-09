@@ -12,13 +12,15 @@ type SettingsSectionProps = {
 export function SettingsSection({
   title,
   description,
-  badge = "Settings coming next",
+  badge,
   children,
   className,
 }: SettingsSectionProps) {
+  const headingId = `section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`
+
   return (
     <section
-      aria-labelledby="section-heading"
+      aria-labelledby={headingId}
       className={cn(
         "surface-accent rounded-3xl p-6 sm:p-8 backdrop-blur-xl transition-all duration-300",
         className
@@ -28,7 +30,7 @@ export function SettingsSection({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2
-              id="section-heading"
+              id={headingId}
               className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl"
             >
               {title}
@@ -37,7 +39,7 @@ export function SettingsSection({
           </div>
           {badge && (
             <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs font-medium text-primary-bright">
-              <span className="size-1.5 rounded-full bg-primary animate-pulse" aria-hidden />
+              <span className="size-1.5 rounded-full bg-primary animate-pulse" aria-hidden="true" />
               {badge}
             </span>
           )}
